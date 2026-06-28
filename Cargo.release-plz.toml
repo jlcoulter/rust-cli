@@ -1,5 +1,0 @@
-[[package]]
-name = "rust-cli-template"
-
-[workspace]
-# Single-crate workspace — add members here if you split into crates

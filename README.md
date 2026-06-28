@@ -1,6 +1,6 @@
 # Rust CLI Template
 
-A GitHub template for Rust CLI tools — clap arguments, anyhow errors, structured logging, tests, CI, Docker, and automated releases included.
+A GitHub template for Rust CLI tools — clap arguments, anyhow errors, structured logging, tests, CI, and Docker included.
 
 ## Features
 
@@ -9,7 +9,6 @@ A GitHub template for Rust CLI tools — clap arguments, anyhow errors, structur
 - **Structured logging** with [tracing](https://docs.rs/tracing) + [tracing-subscriber](https://docs.rs/tracing-subscriber)
 - **Tests** — unit tests in `src/`, integration tests in `tests/`
 - **CI** via GitHub Actions (test, clippy, fmt, build on push/PR)
-- **Release** via [release-plz](https://release-plz.ieni.dev/) on merge to master
 - **Docker** multi-stage build (scratch image, ~3MB static binary)
 - **Makefile** for common tasks
 
@@ -35,8 +34,7 @@ A GitHub template for Rust CLI tools — clap arguments, anyhow errors, structur
 │   └── integration_test.rs # Integration tests
 ├── .github/
 │   └── workflows/
-│       ├── ci.yml          # Test + clippy + fmt
-│       └── release.yml     # release-plz automated releases
+│       └── ci.yml          # Test + clippy + fmt
 ├── Cargo.toml
 ├── Dockerfile
 ├── Makefile
@@ -62,6 +60,23 @@ make docker
 # Lint
 make lint
 ```
+
+## Container Images
+
+CI builds and pushes a container image to GHCR on every push to any branch.
+
+```sh
+# Pull the latest image
+docker pull ghcr.io/<owner>/rust-cli-template:latest
+
+# Pull a specific commit
+docker pull ghcr.io/<owner>/rust-cli-template:<sha>
+
+# Run
+docker run ghcr.io/<owner>/rust-cli-template:latest
+```
+
+Replace `<owner>` with your GitHub username or org. Images are tagged with both `latest` and the commit SHA.
 
 ## Adding a New Module
 
